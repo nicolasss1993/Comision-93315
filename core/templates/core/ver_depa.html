@@ -1,0 +1,265 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Departamento | Hospital</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #e5e7eb;
+            color: #1e293b;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar-custom {
+            background-color: #0f2747;
+            padding: 15px 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #dbeafe !important;
+            margin-left: 10px;
+            padding: 8px 15px !important;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #1e3a5f;
+            color: white !important;
+        }
+
+        /* CONTENEDOR */
+        .departamento-container {
+            min-height: calc(100vh - 76px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* CARD */
+        .departamento-card {
+            background-color: #f8fafc;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(15, 39, 71, 0.15);
+            border: 1px solid #d1d5db;
+        }
+
+        .departamento-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .departamento-header h1 {
+            color: #0f2747;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .departamento-header p {
+            color: #64748b;
+            margin: 0;
+        }
+
+        /* DATOS */
+        .dato {
+            background-color: #e9edf2;
+            border-radius: 18px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+        }
+
+        .dato-label {
+            display: block;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 3px;
+        }
+
+        .dato-valor {
+            color: #0f2747;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* BOTÓN */
+        .btn-volver {
+            background-color: #0f2747;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 11px 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-volver:hover {
+            background-color: #1e3a5f;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="">
+                Hospital
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHospital">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarHospital">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Departamentos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Médicos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Pacientes
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- CONTENIDO -->
+    <main class="departamento-container">
+
+        <div class="departamento-card">
+
+            <div class="departamento-header">
+
+                <h1>
+                    Departamento: {{ depa.nombre }}
+                </h1>
+
+                <p>
+                    Información del departamento médico
+                </p>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="dato-label">
+                    Número de departamento
+                </span>
+
+                <span class="dato-valor">
+                    {{ depa.nro_departamento }}
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="dato-label">
+                    Cantidad de médicos
+                </span>
+
+                <span class="dato-valor">
+                    {{ depa.cantidad_medicos }}
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="dato-label">
+                    Fecha de creación
+                </span>
+
+                <span class="dato-valor">
+                    {{ depa.fecha_creacion|date:"d/m/Y" }}
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="dato-label">
+                    Email
+                </span>
+
+                <span class="dato-valor">
+                    {{ depa.email }}
+                </span>
+
+            </div>
+
+
+            <div class="text-center mt-4">
+
+                <a href="" class="btn btn-volver">
+                    ← Volver a Departamentos
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

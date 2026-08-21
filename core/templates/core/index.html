@@ -1,0 +1,465 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inicio | Hospital</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #e5e7eb;
+            color: #1e293b;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar-custom {
+            background-color: #0f2747;
+            padding: 15px 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #dbeafe !important;
+            margin-left: 10px;
+            padding: 8px 15px !important;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #1e3a5f;
+            color: white !important;
+        }
+
+        /* HERO */
+        .hero {
+            background-color: #f8fafc;
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(15, 39, 71, 0.12);
+            border: 1px solid #d1d5db;
+        }
+
+        .hero h1 {
+            color: #0f2747;
+            font-weight: bold;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #64748b;
+            font-size: 1.15rem;
+            max-width: 700px;
+        }
+
+        .btn-principal {
+            background-color: #0f2747;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 28px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-principal:hover {
+            background-color: #1e3a5f;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* TARJETAS */
+        .section-title {
+            color: #0f2747;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background-color: #f8fafc;
+            border: 1px solid #d1d5db;
+            border-radius: 25px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 7px 20px rgba(15, 39, 71, 0.08);
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(15, 39, 71, 0.15);
+        }
+
+        .icono {
+            width: 60px;
+            height: 60px;
+            background-color: #dbeafe;
+            color: #0f2747;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            color: #0f2747;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .info-card p {
+            color: #64748b;
+        }
+
+        .btn-card {
+            color: #0f2747;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .btn-card:hover {
+            color: #1e3a5f;
+        }
+
+        /* INFORMACIÓN */
+        .info-section {
+            background-color: #0f2747;
+            color: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .info-section h2 {
+            font-weight: bold;
+        }
+
+        .info-section p {
+            color: #dbeafe;
+        }
+
+        .dato-hospital {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .dato-hospital h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .dato-hospital span {
+            color: #bfdbfe;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #0b1d33;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="">
+                Hospital
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHospital">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarHospital">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Departamentos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Médicos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            Pacientes
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <h1>
+                        Bienvenido al Hospital
+                    </h1>
+
+                    <p>
+                        Sistema de gestión hospitalaria para administrar
+                        departamentos médicos, profesionales de la salud
+                        y pacientes de manera simple y organizada.
+                    </p>
+
+                    <div class="mt-4">
+
+                        <a href="" class="btn btn-principal">
+                            Ver Departamentos
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 text-center mt-4 mt-lg-0">
+
+                    <div style="
+                        font-size: 8rem;
+                        color: #0f2747;
+                    ">
+                        🏥
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACCESOS -->
+        <section class="mt-5">
+
+            <h2 class="section-title text-center">
+                Accesos rápidos
+            </h2>
+
+            <div class="row g-4">
+
+                <!-- DEPARTAMENTOS -->
+                <div class="col-md-4">
+
+                    <div class="info-card">
+
+                        <div class="icono">
+                            🏥
+                        </div>
+
+                        <h3>
+                            Departamentos
+                        </h3>
+
+                        <p>
+                            Consulte los departamentos médicos
+                            disponibles en el hospital y la información
+                            correspondiente a cada uno.
+                        </p>
+
+                        <a href="" class="btn-card">
+                            Ver departamentos →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MÉDICOS -->
+                <div class="col-md-4">
+
+                    <div class="info-card">
+
+                        <div class="icono">
+                            👨‍⚕️
+                        </div>
+
+                        <h3>
+                            Médicos
+                        </h3>
+
+                        <p>
+                            Administre la información de los profesionales
+                            médicos que forman parte de nuestra institución.
+                        </p>
+
+                        <a href="" class="btn-card">
+                            Ver médicos →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PACIENTES -->
+                <div class="col-md-4">
+
+                    <div class="info-card">
+
+                        <div class="icono">
+                            🧑‍⚕️
+                        </div>
+
+                        <h3>
+                            Pacientes
+                        </h3>
+
+                        <p>
+                            Acceda al registro de pacientes y gestione
+                            la información necesaria para su atención.
+                        </p>
+
+                        <a href="" class="btn-card">
+                            Ver pacientes →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMACIÓN DEL HOSPITAL -->
+        <section class="info-section">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    <h2>
+                        Atención y gestión integral
+                    </h2>
+
+                    <p class="mt-3">
+                        Nuestro sistema permite mantener organizada
+                        la información de las diferentes áreas del
+                        hospital, facilitando el acceso a los datos
+                        de médicos, pacientes y departamentos.
+                    </p>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div class="row">
+
+                        <div class="col-6">
+                            <div class="dato-hospital">
+                                <h3>24/7</h3>
+                                <span>Atención</span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="dato-hospital">
+                                <h3>100%</h3>
+                                <span>Organizado</span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="dato-hospital">
+                                <h3>+10</h3>
+                                <span>Especialidades</span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="dato-hospital">
+                                <h3>1</h3>
+                                <span>Hospital</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p class="mb-0">
+            Sistema de Gestión Hospitalaria
+        </p>
+
+        <small>
+            © 2026 - Todos los derechos reservados
+        </small>
+
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
