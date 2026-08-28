@@ -1,16 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% for depa in departamentos_list %}
-        <tr>
-            <td>- {{depa.nombre}} </td><br />
-            <td>- {{depa.email}} </td><br />
-        </tr>
-    {% endfor %}
-</body>
-</html>
+{% extends "core/index.html" %}
+
+{% block titulo %}<title>Departamentos | Hospital</title>{% endblock %}
+
+{% block contenido %}
+    <main class="container-fluid main-container"> <!-- TITULO + BOTON -->
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                <div>
+                    <h1 class="page-title"> Departamentos Médicos </h1>
+                    <p class="page-description mb-0"> Administración de los departamentos del hospital. </p>
+                </div> <a href="{% url 'crear_depa' %}" class="btn btn-agregar"> + Agregar Departamento </a>
+            </div> <!-- TABLA -->
+            <div class="table-card"> {% if departamentos_list %} <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> Nombre </th>
+                                <th> Nro de dpto </th>
+                                <th> Email </th>
+                                <th class="text-center"> Acciones </th>
+                            </tr>
+                        </thead>
+                        <tbody> {% for depa in departamentos_list %} <tr>
+                                <td> <strong> {{ depa.nombre }} </strong> </td>
+                                <td> {{ depa.nro_departamento }} </td>
+                                <td> {{ depa.email }} </td>
+                                <td class="text-center"> <!-- VER --> <a href="{% url 'ver_depa' depa.nro_departamento %}"
+                                        class="btn-accion btn-ver"> VER </a> <!-- EDITAR --> <a
+                                        href="{% url 'editar_depa' depa.nro_departamento %}" class="btn-accion btn-editar"> EDITAR
+                                    </a> <!-- ELIMINAR --> <a href="{% url 'consulta_eliminar_depa' depa.nro_departamento %}"
+                                        class="btn-accion btn-eliminar"> ELIMINAR </a> </td>
+                            </tr> {% endfor %} </tbody>
+                    </table>
+                </div> {% else %} <!-- SIN DEPARTAMENTOS -->
+                <div class="sin-departamentos">
+                    <div style="font-size: 4rem;"> 🏥 </div>
+                    <h3> No hay departamentos registrados </h3>
+                    <p> Todavía no se ha creado ningún departamento médico. </p> <a href="{% url 'crear_depa' %}"
+                        class="btn btn-agregar mt-2"> + Agregar Departamento </a>
+                </div> {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

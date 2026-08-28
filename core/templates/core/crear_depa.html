@@ -1,0 +1,143 @@
+{% extends "core/index.html" %}
+
+{% block title %}
+Crear Departamento | Hospital
+{% endblock %}
+
+{% block contenido %}
+
+<main class="form-container">
+
+<div class="form-card">
+
+    <div class="form-header">
+
+        <div class="form-icon">
+            🏥
+        </div>
+
+        <h1>
+            Nuevo Departamento
+        </h1>
+
+        <p>
+            Complete los datos para registrar un nuevo departamento médico.
+        </p>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <!-- NOMBRE -->
+        <div class="mb-3">
+
+            <label
+                for="{{ form.nombre.id_for_label }}"
+                class="form-label"
+            >
+                Nombre
+            </label>
+
+            {{ form.nombre }}
+
+            {% if form.nombre.errors %}
+                <div class="text-danger mt-1">
+                    {{ form.nombre.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- NRO DEPARTAMENTO -->
+        <div class="mb-3">
+
+            <label
+                for="{{ form.nro_departamento.id_for_label }}"
+                class="form-label"
+            >
+                Número de departamento
+            </label>
+
+            {{ form.nro_departamento }}
+
+            {% if form.nro_departamento.errors %}
+                <div class="text-danger mt-1">
+                    {{ form.nro_departamento.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- CANTIDAD DE MEDICOS -->
+        <div class="mb-3">
+
+            <label
+                for="{{ form.cantidad_medicos.id_for_label }}"
+                class="form-label"
+            >
+                Cantidad de médicos
+            </label>
+
+            {{ form.cantidad_medicos }}
+
+            {% if form.cantidad_medicos.errors %}
+                <div class="text-danger mt-1">
+                    {{ form.cantidad_medicos.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- EMAIL -->
+        <div class="mb-4">
+
+            <label
+                for="{{ form.email.id_for_label }}"
+                class="form-label"
+            >
+                Email
+            </label>
+
+            {{ form.email }}
+
+            {% if form.email.errors %}
+                <div class="text-danger mt-1">
+                    {{ form.email.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- BOTONES -->
+        <div class="form-buttons">
+
+            <a
+                href="{% url 'listar_depas' %}"
+                class="btn btn-cancelar"
+            >
+                Cancelar
+            </a>
+
+            <button
+                type="submit"
+                class="btn btn-guardar"
+            >
+                Guardar Departamento
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</main>
+
+{% endblock %}

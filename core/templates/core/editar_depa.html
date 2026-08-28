@@ -1,0 +1,123 @@
+{% extends "core/index.html" %}
+
+{% block title %}
+Editar Departamento | Hospital
+{% endblock %}
+
+{% block contenido %}
+
+<main class="form-container">
+
+<div class="form-card">
+
+    <div class="form-header">
+
+        <div class="form-icon">
+            ✏️
+        </div>
+
+        <h1>
+            Editar Departamento
+        </h1>
+
+        <p>
+            Modifique la información de
+            <strong>{{ depa.nombre }}</strong>.
+        </p>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <!-- NOMBRE -->
+        <div class="mb-3">
+
+            <label
+                for="{{ form.nombre.id_for_label }}"
+                class="form-label"
+            >
+                Nombre
+            </label>
+
+            {{ form.nombre }}
+
+            {% if form.nombre.errors %}
+                <div class="text-danger mt-1">
+                    {{ form.nombre.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- CANTIDAD DE MEDICOS -->
+        <div class="mb-3">
+
+            <label
+                for="{{ form.cantidad_medicos.id_for_label }}"
+                class="form-label"
+            >
+                Cantidad de médicos
+            </label>
+
+            {{ form.cantidad_medicos }}
+
+            {% if form.cantidad_medicos.errors %}
+                <div class="text-danger mt-1">
+                    {{ form.cantidad_medicos.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- EMAIL -->
+        <div class="mb-4">
+
+            <label
+                for="{{ form.email.id_for_label }}"
+                class="form-label"
+            >
+                Email
+            </label>
+
+            {{ form.email }}
+
+            {% if form.email.errors %}
+                <div class="text-danger mt-1">
+                    {{ form.email.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- BOTONES -->
+        <div class="form-buttons">
+
+            <a
+                href="{% url 'ver_depa' depa.nro_departamento %}"
+                class="btn btn-cancelar"
+            >
+                Cancelar
+            </a>
+
+            <button
+                type="submit"
+                class="btn btn-guardar"
+            >
+                Guardar Cambios
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</main>
+
+{% endblock %}

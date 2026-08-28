@@ -1,0 +1,70 @@
+{% extends "core/index.html" %}
+
+{% block title %}
+Confirmar eliminación | Hospital
+{% endblock %}
+
+{% block contenido %}
+
+<main class="form-container">
+
+<div class="form-card text-center">
+
+    <!-- ICONO -->
+    <div class="form-icon mx-auto">
+        ⚠️
+    </div>
+
+
+    <!-- TITULO -->
+    <div class="form-header">
+
+        <h1>
+            ¿Estás seguro?
+        </h1>
+
+        <p>
+            Esta acción no se puede deshacer.
+        </p>
+
+    </div>
+
+
+    <p class="text-danger fw-bold mt-4">
+        ¿Deseás eliminar este departamento?
+    </p>
+
+
+    <!-- FORMULARIO -->
+    <form
+        method="POST"
+        action="{% url 'eliminar_depa' nro_departamento %}"
+    >
+
+        {% csrf_token %}
+
+        <div class="form-buttons mt-4">
+
+            <a
+                href="{% url 'listar_depas' %}"
+                class="btn btn-cancelar"
+            >
+                Cancelar
+            </a>
+
+            <button
+                type="submit"
+                class="btn btn-eliminar-confirmar"
+            >
+                Sí, eliminar
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</main>
+
+{% endblock %}
