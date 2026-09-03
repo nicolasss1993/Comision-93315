@@ -1,0 +1,141 @@
+{% extends "core/index.html" %}
+
+{% block titulo %}Médico: {{ medico.apellido }}, {{ medico.nombre }} | Hospital{% endblock %}
+
+{% block contenido %}
+
+<main class="form-container">
+
+    <div class="form-card" style="max-width: 650px;">
+
+        <!-- Encabezado -->
+        <div class="form-header">
+
+            <div class="form-icon">
+                🩺
+            </div>
+
+            <h1>
+                {{ medico.apellido }}, {{ medico.nombre }}
+            </h1>
+
+            <p>
+                Ficha del profesional médico
+            </p>
+
+        </div>
+
+
+        <!-- Especialidad destacada -->
+        <div class="text-center mb-4">
+
+            <span class="btn-accion btn-ver" style="font-size: 0.95rem; padding: 8px 18px;">
+                {% if medico.especialidad %}
+                    {{ medico.especialidad.nombre }}
+                {% else %}
+                    Sin especialidad asignada
+                {% endif %}
+            </span>
+
+        </div>
+
+
+        <!-- Nombre -->
+        <div class="dato">
+
+            <span class="dato-label">
+                Nombre
+            </span>
+
+            <span class="dato-valor">
+                {{ medico.nombre }}
+            </span>
+
+        </div>
+
+
+        <!-- Apellido -->
+        <div class="dato">
+
+            <span class="dato-label">
+                Apellido
+            </span>
+
+            <span class="dato-valor">
+                {{ medico.apellido }}
+            </span>
+
+        </div>
+
+
+        <!-- Matrícula -->
+        <div class="dato">
+
+            <span class="dato-label">
+                Matrícula
+            </span>
+
+            <span class="dato-valor">
+                {{ medico.matricula }}
+            </span>
+
+        </div>
+
+
+        <!-- Email -->
+        <div class="dato">
+
+            <span class="dato-label">
+                Email
+            </span>
+
+            <span class="dato-valor">
+                {{ medico.email }}
+            </span>
+
+        </div>
+
+
+        <!-- Fecha de ingreso -->
+        <div class="dato">
+
+            <span class="dato-label">
+                Fecha de ingreso
+            </span>
+
+            <span class="dato-valor">
+                {{ medico.fecha_de_ingreso|date:"d/m/Y" }}
+            </span>
+
+        </div>
+
+
+        <!-- Botones -->
+        <div class="form-buttons mt-4">
+
+            <a href="{% url 'medico_list' %}"
+               class="btn btn-cancelar">
+                ← Volver
+            </a>
+
+            <div class="d-flex" style="gap: 15px;">
+
+                <a href="{% url 'medico_update' medico.matricula %}"
+                   class="btn btn-guardar">
+                    Editar
+                </a>
+
+                <a href="{% url 'medico_delete' medico.code %}"
+                   class="btn btn-eliminar-confirmar">
+                    Eliminar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "core/index.html" %}
+
+{% block titulo %}Editar Médico | Hospital{% endblock %}
+
+{% block contenido %}
+
+<main class="form-container">
+
+    <div class="form-card">
+
+        <!-- Encabezado -->
+        <div class="form-header">
+
+            <div class="form-icon">
+                ✏️
+            </div>
+
+            <h1>
+                Editar Médico
+            </h1>
+
+            <p>
+                Actualice los datos de {{ medico.apellido }}, {{ medico.nombre }}
+            </p>
+
+        </div>
+
+
+        <!-- Formulario -->
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- Nombre -->
+            <div class="mb-3">
+
+                <label for="{{ form.nombre.id_for_label }}" class="form-label">
+                    Nombre
+                </label>
+
+                {{ form.nombre }}
+
+                {% if form.nombre.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.nombre.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Apellido -->
+            <div class="mb-3">
+
+                <label for="{{ form.apellido.id_for_label }}" class="form-label">
+                    Apellido
+                </label>
+
+                {{ form.apellido }}
+
+                {% if form.apellido.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.apellido.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Matrícula -->
+            <div class="mb-3">
+
+                <label for="{{ form.matricula.id_for_label }}" class="form-label">
+                    Matrícula
+                </label>
+
+                {{ form.matricula }}
+
+                {% if form.matricula.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.matricula.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Email -->
+            <div class="mb-4">
+
+                <label for="{{ form.email.id_for_label }}" class="form-label">
+                    Email
+                </label>
+
+                {{ form.email }}
+
+                {% if form.email.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.email.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Errores generales -->
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+
+            <!-- Botones -->
+            <div class="form-buttons">
+
+                <a href="{% url 'medico_detail' medico.code %}"
+                   class="btn btn-cancelar">
+                    Cancelar
+                </a>
+
+                <button type="submit"
+                        class="btn btn-guardar">
+                    Guardar Cambios
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+{% endblock %}

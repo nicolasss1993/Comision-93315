@@ -24,6 +24,26 @@ class DepartamentosMedicosForm(forms.ModelForm):
                 "placeholder": "Ingrese el email"
             })
         }
+        
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        
+        if not email.endswith("@hospital.com"):
+            raise forms.ValidationError(
+                "El email debe pertenecer al dominio del hospital. Ej: Laboratorio@hospital.com"
+            )
+
+        return email
+    
+    def clean_nro_departamento(self):
+        nro = self.cleaned_data["nro_departamento"]
+        
+        if DepartamentosMedicos.objects.filter(
+            nro_departamento=nro
+        ).exists():
+            raise forms.ValidationError("El numero de departamento esta en uso.")
+
+        return nro
 
 
 class DepartamentosMedicosUpdateForm(forms.ModelForm):

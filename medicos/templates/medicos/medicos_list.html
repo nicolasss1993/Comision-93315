@@ -1,0 +1,242 @@
+{% extends "core/index.html" %}
+
+{% block titulo %} <title>Médicos | Hospital</title>
+{% endblock %}
+
+{% block contenido %}
+
+<main class="container-fluid main-container">
+
+<div class="container">
+
+    <!-- TITULO + BOTON AGREGAR -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+        <div>
+            <h1 class="page-title">
+                Médicos
+            </h1>
+
+            <p class="page-description mb-0">
+                Administración de los médicos del hospital.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'medico_crear' %}"
+            class="btn btn-agregar"
+        >
+            + Agregar Médico
+        </a>
+
+    </div>
+
+
+    <!-- BUSCADOR -->
+    <div class="table-card mb-4">
+
+        <form method="GET">
+
+            <div class="row align-items-end g-3">
+
+                <div class="col-md-9">
+
+                    <label
+                        for="nombre"
+                        class="form-label"
+                    >
+                        Buscar médico por nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nombre"
+                        id="nombre"
+                        class="form-control"
+                        placeholder="Ingrese el nombre del médico"
+                        value="{{ request.GET.nombre|default:'' }}"
+                    >
+
+                </div>
+
+                <div class="col-md-3 d-flex gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-agregar w-100"
+                    >
+                        🔍 Buscar
+                    </button>
+
+                    {% if request.GET.nombre %}
+
+                        <a
+                            href="{% url 'medico_list' %}"
+                            class="btn btn-cancelar"
+                        >
+                            Limpiar
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- LISTADO -->
+    <div class="table-card">
+
+        {% if medico_list %}
+
+            <div class="table-responsive">
+
+                <table class="table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nombre
+                            </th>
+
+                            <th>
+                                Apellido
+                            </th>
+
+                            <th>
+                                Matrícula
+                            </th>
+
+                            <th class="text-center">
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for medico in medico_list %}
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        {{ medico.nombre }}
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    {{ medico.apellido }}
+                                </td>
+
+                                <td>
+                                    {{ medico.matricula }}
+                                </td>
+
+                                <td class="text-center">
+
+                                    <!-- VER -->
+                                    <a
+                                        href="{% url 'medico_detail' medico.code %}"
+                                        class="btn-accion btn-ver"
+                                        title="Ver médico"
+                                    >
+                                        VER
+                                    </a>
+
+                                    <!-- EDITAR -->
+                                    <a
+                                        href="{% url 'medico_update' medico.code %}"
+                                        class="btn-accion btn-editar"
+                                        title="Editar médico"
+                                    >
+                                        EDITAR
+                                    </a>
+
+                                    <!-- ELIMINAR -->
+                                    <a
+                                        href="{% url 'medico_delete' medico.code %}"
+                                        class="btn-accion btn-eliminar"
+                                        title="Eliminar médico"
+                                    >
+                                        ELIMINAR
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <!-- SIN MEDICOS -->
+            <div class="sin-departamentos">
+
+                <div style="font-size: 4rem;">
+                    👨‍⚕️
+                </div>
+
+                {% if request.GET.nombre %}
+
+                    <h3>
+                        No se encontraron médicos
+                    </h3>
+
+                    <p>
+                        No hay médicos registrados con el nombre
+                        "{{ request.GET.nombre }}".
+                    </p>
+
+                    <a
+                        href="{% url 'medico_list' %}"
+                        class="btn btn-agregar mt-2"
+                    >
+                        Ver todos los médicos
+                    </a>
+
+                {% else %}
+
+                    <h3>
+                        No hay médicos registrados
+                    </h3>
+
+                    <p>
+                        Todavía no se ha registrado ningún médico
+                        en el hospital.
+                    </p>
+
+                    <a
+                        href="{% url 'medico_crear' %}"
+                        class="btn btn-agregar mt-2"
+                    >
+                        + Agregar Médico
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</main>
+
+{% endblock %}

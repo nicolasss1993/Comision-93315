@@ -8,7 +8,11 @@ def home(request):
 
 
 def departamentos_medicos(request):
+    nombre = request.GET.get("nombre")
     depas = DepartamentosMedicos.objects.all() # QuerySet([..., ..., ...,])
+    if nombre is not None:
+        depas = depas.filter(nombre__icontains=nombre)
+
     contexto = {
         "departamentos_list": list(depas)
     }
