@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from core.models import DepartamentosMedicos
 from core.forms import DepartamentosMedicosForm, DepartamentosMedicosUpdateForm
 
@@ -7,6 +8,7 @@ def home(request):
     return render(request, "core/index.html")
 
 
+@login_required
 def departamentos_medicos(request):
     nombre = request.GET.get("nombre")
     depas = DepartamentosMedicos.objects.all() # QuerySet([..., ..., ...,])
@@ -20,6 +22,7 @@ def departamentos_medicos(request):
     return render(request, "core/departamentos.html", contexto)
 
 
+@login_required
 def ver_departamento(request, nro_departamento):
     depa = get_object_or_404(DepartamentosMedicos, nro_departamento=nro_departamento)
     contexto = {
@@ -40,6 +43,7 @@ def ver_departamento(request, nro_departamento):
 # PUT - Editar/Actualizar informacion /// DRF Django Rest Framework
 # DELETE - Eliminar info
 
+@login_required
 def crear_depa(request):
     if request.method == "POST":
         form = DepartamentosMedicosForm(request.POST)
@@ -51,7 +55,7 @@ def crear_depa(request):
     
     return render(request, "core/crear_depa.html", {"form": form})
 
-
+@login_required
 def editar_departamento(request, nro_departamento):
     depa = get_object_or_404(DepartamentosMedicos, nro_departamento=nro_departamento)
     
@@ -69,10 +73,11 @@ def editar_departamento(request, nro_departamento):
     })
 
 
+@login_required
 def consulta_eliminar_depa(request, nro_departamento):
     return render(request, "core/eliminar_depa.html", {"nro_departamento": nro_departamento})
 
-
+@login_required
 def elimar_depa(request, nro_departamento):
     depa = get_object_or_404(DepartamentosMedicos, nro_departamento=nro_departamento)
 

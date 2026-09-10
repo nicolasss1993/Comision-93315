@@ -1,0 +1,95 @@
+{% extends "core/index.html" %}
+
+{% block titulo %}<title>Mi perfil | Hospital</title>{% endblock %}
+
+{% block estilos %}
+{{ block.super }}
+<style>
+    .avatar-perfil {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #dbeafe;
+        margin: 0 auto 15px auto;
+        display: block;
+    }
+</style>
+{% endblock %}
+
+{% block contenido %}
+
+<main class="departamento-container">
+
+    <div class="departamento-card mx-auto">
+
+        <div class="departamento-header">
+
+            {% if user.avatar %}
+                <img
+                    src="{{ user.avatar.url }}"
+                    alt="Avatar de {{ user.username }}"
+                    class="avatar-perfil"
+                >
+            {% endif %}
+
+            <h1>
+                {{ user.username }}
+            </h1>
+
+            <p>
+                Datos de tu cuenta
+            </p>
+
+        </div>
+
+        <div class="dato">
+            <span class="dato-label">Nombre</span>
+            <span class="dato-valor">
+                {{ user.first_name|default:"-" }} {{ user.last_name }}
+            </span>
+        </div>
+
+        <div class="dato">
+            <span class="dato-label">Email</span>
+            <span class="dato-valor">{{ user.email|default:"-" }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="dato-label">País</span>
+            <span class="dato-valor">{{ user.pais|default:"-" }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="dato-label">Dirección</span>
+            <span class="dato-valor">{{ user.direccion|default:"-" }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="dato-label">Fecha de nacimiento</span>
+            <span class="dato-valor">
+                {{ user.fecha_de_nacimiento|date:"d/m/Y"|default:"-" }}
+            </span>
+        </div>
+
+        <div class="form-buttons mt-4">
+
+            <form action="{% url 'logout' %}" method="POST" style="display:inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-cancelar"> Cerrar sesion</button>
+            </form>
+
+            <a
+                href="{% url 'actualizacion_usuario' %}"
+                class="btn btn-guardar"
+            >
+                Editar datos
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

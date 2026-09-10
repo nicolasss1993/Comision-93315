@@ -1,0 +1,53 @@
+{% extends "core/index.html" %}
+
+{% block titulo %}<title>Sesión finalizada | Hospital</title>{% endblock %}
+
+{% block contenido %}
+
+<main class="form-container">
+
+<div class="form-card text-center">
+
+    <!-- ICONO -->
+    <div class="form-icon mx-auto">
+        👋
+    </div>
+
+
+    <!-- TITULO -->
+    <div class="form-header">
+
+        <h1>
+            Sesión cerrada
+        </h1>
+
+        <p>
+            Has cerrado sesión correctamente. ¡Hasta pronto!
+        </p>
+
+    </div>
+
+
+    <div class="form-buttons mt-4">
+
+        <a
+            href="{% url 'home' %}"
+            class="btn btn-cancelar"
+        >
+            Ir al inicio
+        </a>
+
+        <a
+            href="{% url 'login' %}"
+            class="btn btn-guardar"
+        >
+            Volver a ingresar
+        </a>
+
+    </div>
+
+</div>
+
+</main>
+
+{% endblock %}

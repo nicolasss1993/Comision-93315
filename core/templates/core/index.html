@@ -68,6 +68,14 @@
             color: white !important;
         }
 
+        .navbar-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 8px;
+        }
+
 
         /* ================================
        CONTENEDOR PRINCIPAL
@@ -560,7 +568,7 @@
 
             <div class="collapse navbar-collapse" id="navbarHospital">
 
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">
@@ -568,23 +576,55 @@
                         </a>
                     </li>
 
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'listar_depas' %}">
+                                Departamentos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'medico_list' %}">
+                                Médicos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                Pacientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" href="{% url 'detalle_usuario' %}">
+                                {% if user.avatar %}
+                                <img src="{{ user.avatar.url }}" alt="Avatar de {{ user.username }}" class="navbar-avatar">
+                                {% endif %}
+                                Perfil
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="POST" style="display:inline">
+                                {% csrf_token %}
+                                <button type="submit" class="nav-link"> Cerrar sesion</button>
+                            </form>
+                        </li>
+
+                    {% else %}
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'listar_depas' %}">
-                            Departamentos
+                        <a class="nav-link" href="{% url 'login' %}">
+                            Iniciar sesión
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'medico_list' %}">
-                            Médicos
+                        <a class="nav-link" href="{% url 'registro' %}">
+                            Registrarse
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            Pacientes
-                        </a>
-                    </li>
+                    {% endif %}
 
                 </ul>
 
